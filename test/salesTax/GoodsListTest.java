@@ -1,7 +1,8 @@
 package salesTax;
 
-import org.junit.Assert;
 import org.junit.Test;
+
+import static junit.framework.Assert.assertEquals;
 
 public class GoodsListTest {
     @Test
@@ -11,7 +12,7 @@ public class GoodsListTest {
         GoodsList goodsList = new GoodsList();
         goodsList.add(chocolate).add(perfume1);
 
-        Assert.assertEquals(65.15, goodsList.getTotalPriceIncludeTaxes(), 0.001);
+        assertEquals(65.15, goodsList.getTotalPriceIncludeTaxes(), 0.001);
 
     }
 
@@ -25,8 +26,8 @@ public class GoodsListTest {
         GoodsList goodsList = new GoodsList();
         goodsList.add(chocolate).add(pill).add(perfume1).add(perfume2);
 
-        Assert.assertEquals(6.70, goodsList.getTotalTaxes(), 0.001);
-        Assert.assertEquals(74.68, goodsList.getTotalPriceIncludeTaxes(), 0.001);
+        assertEquals(6.70, goodsList.getTotalTaxes(), 0.001);
+        assertEquals(74.68, goodsList.getTotalPriceIncludeTaxes(), 0.001);
 
     }
 
