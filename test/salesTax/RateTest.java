@@ -1,10 +1,8 @@
 package salesTax;
 
-import org.junit.Assert;
 import org.junit.Test;
-import salesTax.exception.GoodNotFoundException;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class RateTest {
     @Test

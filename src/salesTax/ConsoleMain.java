@@ -1,7 +1,5 @@
 package salesTax;
 
-import java.io.IOException;
-
 public class ConsoleMain {
 
     private Parser parser;
@@ -10,14 +8,14 @@ public class ConsoleMain {
         this.parser = parser;
     }
 
-    public String generateBill(String receiptString) throws IOException {
+    public String generateBill(String receiptString) throws Exception {
         String result = "";
         GoodsList goodsList = parser.parseToList(receiptString);
         for (Good good : goodsList.goodList) {
             result += good.outputInfor() + "\n";
         }
-        result += "Sales Taxes: " + String.format("%.2f", goodsList.getTotalTaxes()) + "\n";
-        result += "Total: " + String.format("%.2f", goodsList.getTotalPriceIncludeTaxes());
+        result += "Sales Taxes: " + String.format("%.2f", goodsList.getTotalTaxes().getAmount()) + "\n";
+        result += "Total: " + String.format("%.2f", goodsList.getTotalPriceIncludeTaxes().getAmount());
         return result;
     }
 }

@@ -10,21 +10,21 @@ public class GoodsList {
         return this;
     }
 
-    public double getTotalTaxes() {
+    public Tax getTotalTaxes() {
         double totalTaxes = 0;
 
         for (Good good : goodList) {
-//            totalTaxes += good.getTax();
+            totalTaxes += good.getTax().getAmount();
         }
-        return totalTaxes;
+        return new Tax(totalTaxes);
     }
 
-    public double getTotalPriceIncludeTaxes() {
+    public Money getTotalPriceIncludeTaxes() {
         double totalPrice = 0;
 
         for (Good good : goodList) {
-//            totalPrice += good.getPriceIncludeTax();
+            totalPrice += good.getPriceIncludeTax().getAmount();
         }
-        return totalPrice;
+        return new Money(totalPrice);
     }
 }

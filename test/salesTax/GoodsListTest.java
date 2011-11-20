@@ -3,32 +3,30 @@ package salesTax;
 import org.junit.Test;
 
 import static junit.framework.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class GoodsListTest {
-//    @Test
-//    public void test_should_return_total_price_including_tax_given_goodslist() throws Exception {
-//        Good chocolate = new Good("1 imported box of chocolates", 10.00, true, taxRate);
-//        Good perfume1 = new Good("1 imported bottle of perfume", 47.50, true, taxRate);
-//        GoodsList goodsList = new GoodsList();
-//        goodsList.add(chocolate).add(perfume1);
-//
-//        assertEquals(65.15, goodsList.getTotalPriceIncludeTaxes(), 0.001);
-//
-//    }
-//
-//    @Test
-//    public void test_should_return_total_taxes_given_goodslist() throws Exception {
-//
-//        Good perfume1 = new Good("1 imported bottle of perfume", 27.99, true, taxRate);
-//        Good perfume2 = new Good("1 bottle of perfume ", 18.99, false, taxRate);
-//        Good pill = new Good("1 packet of headache pills", 9.75, false, taxRate);
-//        Good chocolate = new Good("1 box of imported chocolates", 11.25, true, taxRate);
-//        GoodsList goodsList = new GoodsList();
-//        goodsList.add(chocolate).add(pill).add(perfume1).add(perfume2);
-//
-//        assertEquals(6.70, goodsList.getTotalTaxes(), 0.001);
-//        assertEquals(74.68, goodsList.getTotalPriceIncludeTaxes(), 0.001);
-//
-//    }
+    @Test
+    public void test_should_return_total_price_including_tax_and_total_tax_given_goodslist() throws Exception {
+        Good chocolate = createGood("chocolate", 10, 1);
+        Good perfume1 = createGood("1 imported bottle of perfume", 47, 1);
+        GoodsList goodsList = new GoodsList();
+        goodsList.add(chocolate).add(perfume1);
 
+        assertEquals(goodsList.getTotalPriceIncludeTaxes(), new Money(59));
+        assertEquals(goodsList.getTotalTaxes(), new Tax(2));
+
+    }
+
+    private Good createGood(String name, double price, double taxAmount) {
+        Good good = mock(Good.class);
+        Tax tax = mock(Tax.class);
+        when(tax.getAmount()).thenReturn(taxAmount);
+        Money priceIncludeTax = mock(Money.class);
+        when(priceIncludeTax.getAmount()).thenReturn(price+taxAmount);
+        when(good.getTax()).thenReturn(tax);
+        when(good.getPriceIncludeTax()).thenReturn(priceIncludeTax);
+        return good;
+    }
 }

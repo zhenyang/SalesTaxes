@@ -1,9 +1,7 @@
 package salesTax;
 
-import salesTax.exception.GoodNotFoundException;
-
 public enum Rate {
-    NONE_BASIC_TAX("noneBasicTax",0), BASIC_TAX("basicTax", 0.1),
+    NONE_BASIC_TAX("noneBasicTax", 0), BASIC_TAX("basicTax", 0.1),
     IMPORTED_TAX("importedTax", 0.05), NONE_IMPORTED_TAX("noneImportedTax", 0);
 
     private String name;

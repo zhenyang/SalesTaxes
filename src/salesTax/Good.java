@@ -12,16 +12,7 @@ public class Good {
         this.importedTaxRate = importedTaxRate;
         this.basicTaxRate = basicTaxRate;
         if (price <= 0) throw new Exception();
-//        modifySequenceOfName();
     }
-
-//    private void modifySequenceOfName() {
-//        if (this.importedTaxRate) {
-//            this.name = this.name.replace("importedTaxRate ", "");
-//            int insertIndex = this.name.indexOf(" ") + 1;
-//            this.name = new StringBuffer(this.name).insert(insertIndex, "importedTaxRate ").toString();
-//        }
-//    }
 
     public Money getPriceIncludeTax() {
         return new Money(price + getTax().getAmount());
@@ -34,6 +25,6 @@ public class Good {
     }
 
     public String outputInfor() {
-        return name + ": " + String.format("%.2f", getPriceIncludeTax());
+        return name + ": " + String.format("%.2f", getPriceIncludeTax().getAmount());
     }
 }

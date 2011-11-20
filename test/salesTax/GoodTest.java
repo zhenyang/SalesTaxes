@@ -53,17 +53,10 @@ public class GoodTest {
         assertEquals(good.getPriceIncludeTax(), new Money(54.65));
     }
 
-//    @Test
-//    public void test_should_output_information_given_imported_box_of_perfume_at_47p50() throws Exception {
-//        Good good = new Good("1 imported bottle of perfume", 47.50, true, taxRate);
-//        assertEquals(54.65, good.getPriceIncludeTax(), 0.001);
-//        assertEquals("1 imported bottle of perfume: 54.65", good.outputInfor());
-//    }
-//
-//    @Test
-//    public void test_should_make_imported_just_after_quantity_in_name() throws Exception {
-//        Good good = new Good("1 box of imported chocolates", 11.25, true, taxRate);
-//        assertEquals("1 imported box of chocolates: 11.85", good.outputInfor());
-//    }
+    @Test
+    public void test_should_output_information_given_imported_box_of_perfume_at_47p50() throws Exception {
+        Good good = new Good("1 imported bottle of perfume", 47.50, Rate.IMPORTED_TAX, Rate.BASIC_TAX);
+        assertEquals("1 imported bottle of perfume: 54.65", good.outputInfor());
+    }
 
 }
