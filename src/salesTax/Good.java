@@ -3,41 +3,34 @@ package salesTax;
 public class Good {
     private String name;
     private double price;
-    private boolean imported;
+    private Rate importedTaxRate;
+    private Rate basicTaxRate;
 
-    public Good(String name, double price, boolean imported) throws Exception {
+    public Good(String name, double price, Rate importedTaxRate, Rate basicTaxRate) throws Exception {
         this.name = name;
         this.price = price;
-        this.imported = imported;
+        this.importedTaxRate = importedTaxRate;
+        this.basicTaxRate = basicTaxRate;
         if (price <= 0) throw new Exception();
-        modifySequenceOfName();
+//        modifySequenceOfName();
     }
 
-    private void modifySequenceOfName() {
-        if (this.imported) {
-            this.name = this.name.replace("imported ", "");
-            int insertIndex = this.name.indexOf(" ") + 1;
-            this.name = new StringBuffer(this.name).insert(insertIndex, "imported ").toString();
-        }
+//    private void modifySequenceOfName() {
+//        if (this.importedTaxRate) {
+//            this.name = this.name.replace("importedTaxRate ", "");
+//            int insertIndex = this.name.indexOf(" ") + 1;
+//            this.name = new StringBuffer(this.name).insert(insertIndex, "importedTaxRate ").toString();
+//        }
+//    }
+
+    public Money getPriceIncludeTax() {
+        return new Money(price + getTax().getAmount());
     }
 
-    public double getPriceIncludeTax() {
-        return price + getTax();
-    }
-
-    public double getTax() {
-        double rate = 0;
-        if (imported) rate = 0.05;
-        try {
-            rate += Rate.getRate(name);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return round(price * rate);
-    }
-
-    private double round(double value) {
-        return Math.ceil(value * 20) / 20;
+    public Tax getTax() {
+        double baseTax = price * basicTaxRate.getRate();
+        double importedTax = price * importedTaxRate.getRate();
+        return new Tax(baseTax + importedTax);
     }
 
     public String outputInfor() {

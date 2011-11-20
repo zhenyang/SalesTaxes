@@ -14,7 +14,7 @@ public class GoodsList {
         double totalTaxes = 0;
 
         for (Good good : goodList) {
-            totalTaxes += good.getTax();
+//            totalTaxes += good.getTax();
         }
         return totalTaxes;
     }
@@ -23,7 +23,7 @@ public class GoodsList {
         double totalPrice = 0;
 
         for (Good good : goodList) {
-            totalPrice += good.getPriceIncludeTax();
+//            totalPrice += good.getPriceIncludeTax();
         }
         return totalPrice;
     }

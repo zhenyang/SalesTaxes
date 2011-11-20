@@ -24,7 +24,7 @@ public class Parser {
         boolean imported = name.contains("imported");
         Good good = null;
         try {
-            good = new Good(name, price, imported);
+            good = new Good(name, price, null, null);
         } catch (Exception e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
